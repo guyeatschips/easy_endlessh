@@ -14,14 +14,14 @@ cd endlessh-master/
 
 echo "Checking if make and gcc are installed..."
 
-if { apt list --installed make | grep "make" } == "";
+if { apt list --installed make | grep "make" } == ""; 
 then
     make_installed = "no"
 else 
     make_installed = ""
 fi
 
-if { apt list --installed gcc | grep "gcc" } == "";
+if { apt list --installed gcc | grep "gcc" } == ""; 
 then
     gcc_installed = "no"
 else 
@@ -44,28 +44,28 @@ touch /etc/endlessh/config
 
 echo "Please choose a port for endlessh(leave blank for 22)"
 read endlesshport
-if $endlesshport == "";
+if $endlesshport == ""; 
 then
 	endlesshport="22"
 fi
 
 echo "Please choose a delay (in milliseconds) between individual lines(leave blank for 10000)"
 read endlesshdelay
-if $endlesshdelay == "";
+if $endlesshdelay == ""; 
 then
 	endlesshdelay = "10000"
 fi
 
 echo "Please choose the Max Line Length(leave blank for 32 characters)"
 read endlesshmaxllength
-if $endlesshmaxllength == "";
+if $endlesshmaxllength == ""; 
 then
 	endlesshmaxllength = "32"
 fi
 
 echo "Please choose the max number of clients(leave blank for 1024)"
 read endlesshmaxclients
-if $endlesshmaxclients == "";
+if $endlesshmaxclients == ""; 
 then
 	endlesshmaxclients = "1024"
 	echo "Max clients chosen: $endlesshmaxclients"
@@ -88,7 +88,7 @@ esac
 
 echo "Please choose the family of the listening socket(enter 'ipv4', 'ipv6', or 'both' with no quotations)"
 read endlesshipfamily
-case $endlesshipfamily in
+case $endlesshipfamily in 
 
 	"ipv4")
 		echo "You've chosen ipv4"
@@ -139,12 +139,12 @@ endlessh_revert () {
 	rm /etc/systemd/system/endlessh.service
 	rm master.tar.gz
 	rm -r endlessh-master/
-    if $make_installed == "no";
+    if $make_installed == "no"; 
     then
         echo "Removing make"
         apt remove make
     fi
-    if $gcc_installed == "no";
+    if $gcc_installed == "no"; 
     then 
         echo "Removing GCC"
         apt remove gcc
